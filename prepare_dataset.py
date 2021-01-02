@@ -55,5 +55,5 @@ def prepare_dataset(DATASET_PATH, JSON_PATH, n_mfcc=13, hop_length=512, n_fft=20
     with open(JSON_PATH, "w") as fp:
         json.dump(data, fp, indent=4)
 
-if __name___ == "__main__":
+if __name__ == "__main__":
     prepare_dataset(DATASET_PATH, JSON_PATH)
