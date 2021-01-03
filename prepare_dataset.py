@@ -6,7 +6,7 @@ DATASET_PATH = "dataset"
 JSON_PATH = "data.json"
 SAMPLES_TO_CONSIDER = 22050 # 1 sec worth of sound
 
-def prepare_dataset(DATASET_PATH, JSON_PATH, n_mfcc=13, hop_length=512, n_fft=2048):
+def prepare_dataset(dataset_path, JSON_PATH, n_mfcc=13, hop_length=512, n_fft=2048):
 
     #data dictionary
     data = {
@@ -17,13 +17,13 @@ def prepare_dataset(DATASET_PATH, JSON_PATH, n_mfcc=13, hop_length=512, n_fft=20
     }
 
     # loop through all the sub-dirs
-    for i, (dirpath, dirnames, filenames) in enumerate(os.walk(DATASET_PATH)):
+    for i, (dirpath, dirnames, filenames) in enumerate(os.walk(dataset_path)):
 
         # we need to ensure that we're not at root level
-        if dirpath is not DATASET_PATH:
+        if dirpath is not dataset_path:
 
             # update mappings
-            category = dirpath.split("/")[-1] # dataset/down -> [dataset, down]
+            category = dirpath.split('\\')[-1] # dataset/down -> [dataset, down]
             data["mappings"].append(category)
             print(f"Processing {category}")
 
