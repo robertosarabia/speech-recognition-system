@@ -67,7 +67,7 @@ def Keyword_Spotting_Service():
     return _Keyword_Spotting_Service._instance
 
 
-if __name__ = "__main__":
+if __name__ == "__main__":
 
     kss = Keyword_Spotting_Service()
 
