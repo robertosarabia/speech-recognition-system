@@ -1,9 +1,9 @@
-import tensorflow.keras as keras
+import tensorflow as tf
 import numpy as np
 import librosa
 
 
-MODEL_PATH = "model.h5"
+SAVED_MODEL_PATH = "model.h5"
 NUM_SAMPLES_TO_CONSIDER = 22050 # 1 sec of sound
 
 class _Keyword_Spotting_Service:
@@ -25,10 +25,10 @@ class _Keyword_Spotting_Service:
     _instance = None
 
 
-    def predict(selfself, file_path):
+    def predict(self, file_path):
 
         # extract MFCCs
-        MFCCs = self.prepreprocess(file_path)
+        MFCCs = self.preprocess(file_path)
 
         # convert 2d MFCCs array into 4d array
         MFCCs = MFCCs[np.newaxis, ..., np.newaxis]
@@ -59,11 +59,10 @@ class _Keyword_Spotting_Service:
 # elegant way of implementing singleton class in Python
 # checks if instance is available and loads otherwise creates new using MODEL_PATH
 def Keyword_Spotting_Service():
-
-    # ensure that we only have 1 instance of KSS
+    # ensure an instance is created only the first time the factory function is called
     if _Keyword_Spotting_Service._instance is None:
-        _Keyword_Spotting_Service._instance = _Keyword_Spotting_Service
-        Keyword_Spotting_Service.model = keras.models.load_model(MODEL_PATH)
+        _Keyword_Spotting_Service._instance = _Keyword_Spotting_Service()
+        _Keyword_Spotting_Service.model = tf.keras.models.load_model(SAVED_MODEL_PATH)
     return _Keyword_Spotting_Service._instance
 
 
@@ -71,7 +70,6 @@ if __name__ == "__main__":
 
     kss = Keyword_Spotting_Service()
 
-    # TODO create file structure with below audio test files
     keyword1 = kss.predict("test/down.wav")
     keyword2 = kss.predict("test/left.wav")
 
