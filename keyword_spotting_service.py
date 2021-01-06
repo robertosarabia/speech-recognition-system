@@ -28,7 +28,7 @@ class _Keyword_Spotting_Service:
     def predict(selfself, file_path):
 
         # extract MFCCs
-        MFCCs = self.prepreprocess(file_path) #
+        MFCCs = self.prepreprocess(file_path)
 
         # convert 2d MFCCs array into 4d array
         MFCCs = MFCCs[np.newaxis, ..., np.newaxis]
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     kss = Keyword_Spotting_Service()
 
     # TODO create file structure with below audio test files
-    kss.predict("test/down.wav")
-    kss.predict("test/left.wav")
+    keyword1 = kss.predict("test/down.wav")
+    keyword2 = kss.predict("test/left.wav")
 
     print(f"Predicted Keywords: {keyword1}, {keyword2}")

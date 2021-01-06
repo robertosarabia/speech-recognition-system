@@ -26,7 +26,6 @@ def predict():
     # make a prediction
     predicted_keyword = kss.predict(file_name)
 
-
     # remove the audio file
     os.remove(file_name)
 
