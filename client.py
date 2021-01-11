@@ -1,4 +1,6 @@
-URL = "http://127.0.0.1:5000/predict"
+import requests
+
+URL = "http://127.0.0.1:50563/predict"
 TEST_AUDIO_FILE_PATH = "test/left.wav"
 
 
